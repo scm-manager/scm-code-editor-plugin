@@ -36,7 +36,7 @@ type Props = WithTranslation & {
   content: string;
   language: string;
   disabled: boolean;
-  onChange: (value: string, name?: string) => void;
+  onChange: (value: string) => void;
 };
 
 type State = {
