@@ -22,6 +22,4 @@
  * SOFTWARE.
  */
 
-import {binder} from "@scm-manager/ui-extensions";
-
-binder.bind("", "");
+export * from "./components/CodeEditor";

@@ -21,11 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+// @ts-nocheck
+// copy of ace/theme/arduino-tomorrow
+import css from '!!raw-loader!./EditorTheme.css';
 
-describe("frontend unit tests", () => {
+ace.define("ace/theme/arduino-light", ["require", "exports", "module", "ace/lib/dom"], function(
+  require,
+  exports,
+  module
+) {
+  exports.isDark = false;
+  exports.cssClass = "ace-arduino-light";
+  exports.cssText = css;
 
-  it("some test", () => {
-    expect( 21 * 2 ).toBe(42);
-  });
-
+  var dom = require("../lib/dom");
+  dom.importCssString(exports.cssText, exports.cssClass);
 });
+(function() {
+  ace.require(["ace/theme/arduino-light"], function(m) {
+    if (typeof module == "object" && typeof exports == "object" && module) {
+      module.exports = m;
+    }
+  });
+})();

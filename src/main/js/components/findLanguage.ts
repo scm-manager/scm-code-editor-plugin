@@ -21,21 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import languages from "./languages";
 
-package com.cloudogu.scm.code_editor;
+export const defaultLanguage = "text";
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-@Path("v2/sample")
-class SampleResource {
-
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String sample() {
-    return "Sample";
+export default function(language: string): string {
+  if (language) {
+    const lowerCaseLanguage = language.toLowerCase();
+    if (languages.indexOf(lowerCaseLanguage) >= 0) {
+      return lowerCaseLanguage;
+    }
   }
-
+  return defaultLanguage;
 }
