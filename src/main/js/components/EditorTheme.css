@@ -21,60 +21,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-.ace-arduino-light {
+.scm-manager {
   font-family: monospace !important;
   font-size: 14px !important;
   line-height: 21px !important;
   font-weight: 400;
 }
 
-.ace-arduino-light .ace_marker-layer .ace_selection {
+.scm-manager .ace_marker-layer .ace_selection {
   background: #F5871F;
   color: white;
 }
 
-.ace-arduino-light .ace_marker-layer .ace_active-line {
+.scm-manager .ace_marker-layer .ace_active-line {
   background: #f5f5f5
 }
 
-.ace-arduino-light .ace_meta,
-.ace-arduino-light .ace_meta.ace_tag,
-.ace-arduino-light .ace_comment {
+.scm-manager .ace_meta,
+.scm-manager .ace_meta.ace_tag,
+.scm-manager .ace_comment {
   color: #9a9a9a;
 }
 
-.ace-arduino-light .ace_constant.ace_character,
-.ace-arduino-light .ace_entity.ace_other.ace_attribute-name,
-.ace-arduino-light .ace_string {
+.scm-manager .ace_constant.ace_character,
+.scm-manager .ace_entity.ace_other.ace_attribute-name,
+.scm-manager .ace_string {
   color: #cca201;
 }
 
-.ace-arduino-light .ace_keyword.ace_operator {
+.scm-manager .ace_keyword.ace_operator {
   color: #686868;
 }
 
-.ace-arduino-light .ace_variable,
-.ace-arduino-light .ace_keyword {
+.scm-manager .ace_variable,
+.scm-manager .ace_keyword {
   color: #00a984;
 }
 
-.ace-arduino-light .ace_entity.ace_name.ace_function,
-.ace-arduino-light .ace_support.ace_function {
+.scm-manager .ace_entity.ace_name.ace_function,
+.scm-manager .ace_support.ace_function {
   color: #ff3860;
 }
 
-.ace-arduino-light .ace_variable,
-.ace-arduino-light .ace_string.ace_regexp {
+.scm-manager .ace_variable,
+.scm-manager .ace_string.ace_regexp {
   color: #a74eb2;
 }
 
-.ace-arduino-light .ace_constant.ace_other,
-.ace-arduino-light .ace_invalid.ace_deprecated, /* ? */
-.ace-arduino-light .ace_entity.ace_name.ace_tag,
-.ace-arduino-light .ace_constant.ace_numeric {
+.scm-manager .ace_constant.ace_other,
+.scm-manager .ace_invalid.ace_deprecated, /* ? */
+.scm-manager .ace_entity.ace_name.ace_tag,
+.scm-manager .ace_constant.ace_numeric {
   color: #2c99c7;
 }
 
-.ace-arduino-light .ace_constant.ace_language {
+.scm-manager .ace_constant.ace_language {
   color: #ff3860; /* or #363636 ? */
 }

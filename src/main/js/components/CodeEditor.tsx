@@ -114,7 +114,7 @@ class CodeEditor extends Component<Props, State> {
       <StyledAceEditor
         className="is-family-monospace"
         mode={language}
-        theme="arduino-light"
+        theme="scm-manager"
         onChange={onChange}
         name="UNIQUE_ID_OF_DIV"
         value={content}
