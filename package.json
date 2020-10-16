@@ -1,13 +1,14 @@
 {
   "name": "@scm-manager/scm-code-editor-plugin",
-  "private": true,
+  "private": false,
   "version": "1.0.0-SNAPSHOT",
   "license": "MIT",
   "main": "./src/main/js/index.tsx",
   "scripts": {
     "build": "ui-scripts plugin",
     "watch": "ui-scripts plugin-watch",
-    "postinstall": "ui-plugins postinstall"
+    "postinstall": "ui-plugins postinstall",
+    "deploy": "npm publish"
   },
   "dependencies": {
     "@scm-manager/ui-components": "^2.0.0",
