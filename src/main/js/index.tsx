@@ -22,4 +22,4 @@
  * SOFTWARE.
  */
 
-export * from "./components/CodeEditor";
+export { default as CodeEditor } from "./components/CodeEditor";
