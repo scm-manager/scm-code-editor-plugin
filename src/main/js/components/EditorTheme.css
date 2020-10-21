@@ -46,7 +46,7 @@
 .scm-manager .ace_constant.ace_character,
 .scm-manager .ace_entity.ace_other.ace_attribute-name,
 .scm-manager .ace_string {
-  color: #cca201;
+  color: #005f9a;
 }
 
 .scm-manager .ace_keyword.ace_operator {
