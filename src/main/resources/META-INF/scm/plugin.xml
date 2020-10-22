@@ -28,11 +28,10 @@
 <plugin>
   <scm-version>2</scm-version>
 
-  <author>Cloudogu GmbH</author>
-  <category>Library</category>
-
   <information>
-    <displayName>scm-code-editor-plugin</displayName>
+    <displayName>CodeEditor</displayName>
+    <author>Cloudogu GmbH</author>
+    <category>Library</category>
   </information>
 
   <conditions>
