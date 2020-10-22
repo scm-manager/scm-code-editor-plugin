@@ -23,4 +23,5 @@
  */
 
 export { default as CodeEditor } from "./components/CodeEditor";
-export { default as languages } from "./languages";
+export { default as findLanguage } from "./components/findLanguage";
+export { default as languages } from "./components/languages";

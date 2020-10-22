@@ -26,7 +26,7 @@ const fs = require("fs");
 const path = require("path");
 const prettier = require("prettier");
 const modeDirectory = path.resolve(__dirname, "..", "node_modules", "ace-builds", "src-noconflict");
-const targetFile = path.resolve(__dirname, "..", "src", "main", "js", "languages.ts");
+const targetFile = path.resolve(__dirname, "..", "src", "main", "js", "components", "languages.ts");
 
 const modes = fs
   .readdirSync(modeDirectory)
