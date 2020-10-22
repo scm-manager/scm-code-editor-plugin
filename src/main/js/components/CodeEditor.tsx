@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 import React, { Component } from "react";
-import styled from "styled-components";
 import { Loading, ErrorNotification } from "@scm-manager/ui-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 
@@ -33,9 +32,10 @@ import findLanguage from "./findLanguage";
 const defaultLanguage = "text";
 
 type Props = WithTranslation & {
-  content: string;
+  content?: string;
   language: string;
-  disabled: boolean;
+  disabled?: boolean;
+  className?: string;
   onChange: (value: string) => void;
 };
 
@@ -44,13 +44,6 @@ type State = {
   error?: Error;
   language?: string;
 };
-
-const StyledAceEditor = styled(AceEditor)`
-  .ace_placeholder {
-    font-family: inherit;
-    transform: scale(1);
-  }
-`;
 
 class CodeEditor extends Component<Props, State> {
   constructor(props: Props) {
@@ -101,7 +94,7 @@ class CodeEditor extends Component<Props, State> {
   };
 
   render() {
-    const { content, disabled, onChange, t } = this.props;
+    const { content, disabled, className, onChange, t } = this.props;
     const { language, loading, error } = this.state;
 
     if (loading) {
@@ -111,8 +104,8 @@ class CodeEditor extends Component<Props, State> {
     }
 
     return (
-      <StyledAceEditor
-        className="is-family-monospace"
+      <AceEditor
+        className={`is-family-monospace ${className}`}
         mode={language}
         theme="scm-manager"
         onChange={onChange}

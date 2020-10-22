@@ -21,11 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+ 
 .scm-manager {
   font-family: monospace !important;
   font-size: 14px !important;
   line-height: 21px !important;
   font-weight: 400;
+}
+
+.scm-manager .ace_placeholder {
+  font-family: inherit;
+  transform: scale(1);
 }
 
 .scm-manager .ace_marker-layer .ace_selection {
