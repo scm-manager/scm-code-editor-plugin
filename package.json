@@ -5,6 +5,7 @@
   "license": "MIT",
   "main": "./src/main/js/index.tsx",
   "scripts": {
+    "gen-languages" : "node scripts/gen-languages.js",
     "build": "ui-scripts plugin",
     "watch": "ui-scripts plugin-watch",
     "postinstall": "ui-plugins postinstall",
