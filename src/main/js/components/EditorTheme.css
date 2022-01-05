@@ -40,7 +40,8 @@
 }
 
 .scm-manager .ace_marker-layer .ace_active-line {
-  background: #f5f5f5
+  background: #f5f5f5;
+  background: var(--sh-block-background);
 }
 
 .scm-manager .ace_meta,
