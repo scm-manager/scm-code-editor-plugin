@@ -35,7 +35,7 @@
 }
 
 .scm-manager .ace_marker-layer .ace_selection {
-  background: #B55C08; /* #F5871F */
+  background: var(--sh-selected-color);
 }
 
 .scm-manager .ace_meta,
