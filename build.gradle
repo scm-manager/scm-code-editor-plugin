@@ -30,7 +30,7 @@ dependencies {
 }
 
 scmPlugin {
-  scmVersion = "2.8.0"
+  scmVersion = "2.26.0"
   displayName = "CodeEditor"
   description = "Provides a dedicated code editor component to be used by other plugins"
   author = "Cloudogu GmbH"
