@@ -35,53 +35,47 @@
 }
 
 .scm-manager .ace_marker-layer .ace_selection {
-  background: #F5871F;
-  color: white;
-}
-
-.scm-manager .ace_marker-layer .ace_active-line {
-  background: #f5f5f5;
-  background: var(--sh-block-background);
+  background: var(--sh-selected-color);
 }
 
 .scm-manager .ace_meta,
 .scm-manager .ace_meta.ace_tag,
 .scm-manager .ace_comment {
-  color: #9a9a9a;
+  color: var(--sh-comment-color);
 }
 
 .scm-manager .ace_constant.ace_character,
 .scm-manager .ace_entity.ace_other.ace_attribute-name,
 .scm-manager .ace_string {
-  color: #005f9a;
+  color: var(--sh-selector-color);
 }
 
 .scm-manager .ace_keyword.ace_operator {
-  color: #686868;
+  color: var(--sh-operator-color);
 }
 
 .scm-manager .ace_variable,
 .scm-manager .ace_keyword {
-  color: #00a984;
+  color: var(--sh-keyword-color);
 }
 
 .scm-manager .ace_entity.ace_name.ace_function,
 .scm-manager .ace_support.ace_function {
-  color: #ff3860;
+  color: var(--sh-function-color);
 }
 
 .scm-manager .ace_variable,
 .scm-manager .ace_string.ace_regexp {
-  color: #a74eb2;
+  color: var(--sh-variable-color);
 }
 
 .scm-manager .ace_constant.ace_other,
 .scm-manager .ace_invalid.ace_deprecated, /* ? */
 .scm-manager .ace_entity.ace_name.ace_tag,
 .scm-manager .ace_constant.ace_numeric {
-  color: #2c99c7;
+  color: var(--sh-property-color);
 }
 
 .scm-manager .ace_constant.ace_language {
-  color: #ff3860; /* or #363636 ? */
+  color: var(--sh-function-color);
 }
