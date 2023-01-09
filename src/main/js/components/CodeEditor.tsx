@@ -36,6 +36,7 @@ type Props = WithTranslation & {
   language: string;
   disabled?: boolean;
   className?: string;
+  initialFocus?: boolean;
   onChange: (value: string) => void;
 };
 
@@ -94,7 +95,7 @@ class CodeEditor extends Component<Props, State> {
   };
 
   render() {
-    const { content, disabled, className, onChange, t } = this.props;
+    const { content, disabled, className, onChange, initialFocus = false, t } = this.props;
     const { language, loading, error } = this.state;
 
     if (loading) {
@@ -116,6 +117,7 @@ class CodeEditor extends Component<Props, State> {
         fontSize="14px"
         setOptions={{ useWorker: false }}
         placeholder={t("scm-editor-plugin.edit.placeholder")}
+        focus={initialFocus}
       />
     );
   }
