@@ -118,6 +118,7 @@ class CodeEditor extends Component<Props, State> {
         setOptions={{ useWorker: false }}
         placeholder={t("scm-editor-plugin.edit.placeholder")}
         focus={initialFocus}
+        navigateToFileEnd={false}
       />
     );
   }
