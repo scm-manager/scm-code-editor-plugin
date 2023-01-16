@@ -28,6 +28,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import AceEditor from "react-ace";
 import "./EditorTheme.js";
 import findLanguage from "./findLanguage";
+import styled from "styled-components";
 
 const defaultLanguage = "text";
 
@@ -45,6 +46,11 @@ type State = {
   error?: Error;
   language?: string;
 };
+
+const StyledAceEditor = styled(AceEditor)`
+  resize: vertical;
+  min-height: 500px;
+`;
 
 class CodeEditor extends Component<Props, State> {
   constructor(props: Props) {
@@ -94,6 +100,11 @@ class CodeEditor extends Component<Props, State> {
       });
   };
 
+  reloadEditor = (editor: Ace.Editor) => {
+    editor.resize(true);
+    editor.renderer.updateFull(true);
+  }
+
   render() {
     const { content, disabled, className, onChange, initialFocus = false, t } = this.props;
     const { language, loading, error } = this.state;
@@ -105,7 +116,7 @@ class CodeEditor extends Component<Props, State> {
     }
 
     return (
-      <AceEditor
+      <StyledAceEditor
         className={`is-family-monospace ${className}`}
         mode={language}
         theme="scm-manager"
@@ -115,7 +126,9 @@ class CodeEditor extends Component<Props, State> {
         readOnly={disabled}
         width="100%"
         fontSize="14px"
-        setOptions={{ useWorker: false }}
+        onFocus={(event, editor: Ace.Editor) => this.reloadEditor(editor)}
+        onScroll={(editor: Ace.Editor) => this.reloadEditor(editor) }
+        setOptions={{ useWorker: false, cursorStyle: "smooth", autoScrollEditorIntoView: true }}
         placeholder={t("scm-editor-plugin.edit.placeholder")}
         focus={initialFocus}
         navigateToFileEnd={false}
