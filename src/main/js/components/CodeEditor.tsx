@@ -103,7 +103,7 @@ class CodeEditor extends Component<Props, State> {
   reloadEditor = (editor: Ace.Editor) => {
     editor.resize(true);
     editor.renderer.updateFull(true);
-  }
+  };
 
   render() {
     const { content, disabled, className, onChange, initialFocus = false, t } = this.props;
@@ -127,11 +127,20 @@ class CodeEditor extends Component<Props, State> {
         width="100%"
         fontSize="14px"
         onFocus={(event, editor: Ace.Editor) => this.reloadEditor(editor)}
-        onScroll={(editor: Ace.Editor) => this.reloadEditor(editor) }
+        onScroll={(editor: Ace.Editor) => this.reloadEditor(editor)}
         setOptions={{ useWorker: false, cursorStyle: "smooth", autoScrollEditorIntoView: true }}
         placeholder={t("scm-editor-plugin.edit.placeholder")}
         focus={initialFocus}
         navigateToFileEnd={false}
+        commands={[
+          {
+            name: "Escape",
+            bindKey: { mac: "Esc", win: "Esc" },
+            exec: editor => {
+              editor.blur();
+            }
+          }
+        ]}
       />
     );
   }

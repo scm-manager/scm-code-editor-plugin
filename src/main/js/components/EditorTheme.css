@@ -79,3 +79,7 @@
 .scm-manager .ace_constant.ace_language {
   color: var(--sh-function-color);
 }
+
+.scm-manager .ace_indent-guide {
+  border-right: 1px solid var(--scm-border-color);
+}
