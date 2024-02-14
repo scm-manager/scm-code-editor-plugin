@@ -23,14 +23,14 @@
  */
 
 plugins {
-  id 'org.scm-manager.smp' version '0.15.0'
+  id 'org.scm-manager.smp' version '0.16.3'
 }
 
 dependencies {
 }
 
 scmPlugin {
-  scmVersion = "2.32.2"
+  scmVersion = "3.0.0"
   displayName = "CodeEditor"
   description = "Provides a dedicated code editor component to be used by other plugins"
   author = "Cloudogu GmbH"
