@@ -39,6 +39,7 @@ type Props = WithTranslation & {
   className?: string;
   initialFocus?: boolean;
   onChange: (value: string) => void;
+  onBlur?: () => void
 };
 
 type State = {
@@ -124,6 +125,7 @@ class CodeEditor extends Component<Props, State> {
         name="UNIQUE_ID_OF_DIV"
         value={content}
         readOnly={disabled}
+        onBlur={this.props.onBlur}
         width="100%"
         fontSize="14px"
         onFocus={(event, editor: Ace.Editor) => this.reloadEditor(editor)}
@@ -135,7 +137,7 @@ class CodeEditor extends Component<Props, State> {
         commands={[
           {
             name: "Escape",
-            bindKey: { mac: "Esc", win: "Esc" },
+            bindKey: { mac: "Command-Enter", win: "Ctrl-Enter" },
             exec: editor => {
               editor.blur();
             }

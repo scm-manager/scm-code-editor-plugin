@@ -1,0 +1,2 @@
+- type: added
+  description: added an on blur callback and additional keybinds to blur the editor
