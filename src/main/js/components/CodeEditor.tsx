@@ -32,6 +32,11 @@ import styled from "styled-components";
 
 const defaultLanguage = "text";
 
+type OnBlurCallbacks = {
+  esc: () => void;
+  strgEnter: () => void;
+};
+
 type Props = WithTranslation & {
   content?: string;
   language: string;
@@ -39,7 +44,7 @@ type Props = WithTranslation & {
   className?: string;
   initialFocus?: boolean;
   onChange: (value: string) => void;
-  onBlur?: () => void
+  onBlur?: OnBlurCallbacks;
 };
 
 type State = {
@@ -125,7 +130,6 @@ class CodeEditor extends Component<Props, State> {
         name="UNIQUE_ID_OF_DIV"
         value={content}
         readOnly={disabled}
-        onBlur={this.props.onBlur}
         width="100%"
         fontSize="14px"
         onFocus={(event, editor: Ace.Editor) => this.reloadEditor(editor)}
@@ -136,10 +140,19 @@ class CodeEditor extends Component<Props, State> {
         navigateToFileEnd={false}
         commands={[
           {
-            name: "Escape",
+            name: "ToCommitMessage",
             bindKey: { mac: "Command-Enter", win: "Ctrl-Enter" },
             exec: editor => {
               editor.blur();
+              this.props.onBlur?.strgEnter();
+            }
+          },
+          {
+            name: "ToCancelButton",
+            bindKey: { mac: "Esc", win: "Esc" },
+            exec: editor => {
+              editor.blur();
+              this.props.onBlur?.esc();
             }
           }
         ]}
