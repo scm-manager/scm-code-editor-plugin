@@ -2,7 +2,7 @@
     "name": "@scm-manager/scm-code-editor-plugin",
     "private": false,
     "version": "2.1.1-SNAPSHOT",
-    "license": "MIT",
+    "license": "AGPLv3",
     "main": "./src/main/js/index.tsx",
     "scripts": {
         "gen-languages": "node scripts/gen-languages.js",
