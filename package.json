@@ -2,7 +2,7 @@
     "name": "@scm-manager/scm-code-editor-plugin",
     "private": false,
     "version": "3.0.1-SNAPSHOT",
-    "license": "AGPLv3",
+    "license": "AGPL-3.0-only",
     "main": "./src/main/js/index.tsx",
     "scripts": {
         "gen-languages": "node scripts/gen-languages.js",
