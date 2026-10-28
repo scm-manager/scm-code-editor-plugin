@@ -14,14 +14,18 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-import React, { Component } from "react";
-import { Loading, ErrorNotification } from "@scm-manager/ui-components";
-import { WithTranslation, withTranslation } from "react-i18next";
+import React, { FC, useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 import AceEditor from "react-ace";
 import "./EditorTheme.js";
 import findLanguage from "./findLanguage";
 import styled from "styled-components";
+import { registerTheme } from "./EditorTheme";
+import * as ace from "ace-builds";
+import { Ace } from "ace-builds";
+import { useCodeSettingValue } from "./useProfile";
+import { ErrorNotification, Loading } from "@scm-manager/ui-core";
 
 const defaultLanguage = "text";
 
@@ -30,7 +34,7 @@ type OnBlurCallbacks = {
   strgEnter: () => void;
 };
 
-type Props = WithTranslation & {
+type Props = {
   content?: string;
   language: string;
   disabled?: boolean;
@@ -40,118 +44,111 @@ type Props = WithTranslation & {
   onBlur?: OnBlurCallbacks;
 };
 
-type State = {
-  loading?: boolean;
-  error?: Error;
-  language?: string;
-};
-
 const StyledAceEditor = styled(AceEditor)`
   resize: vertical;
   min-height: 500px;
 `;
 
-class CodeEditor extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      loading: true,
-      language: defaultLanguage
-    };
-  }
+const CodeEditor: FC<Props> = ({
+                                 content,
+                                 language: languageProp,
+                                 disabled,
+                                 className,
+                                 initialFocus = false,
+                                 onChange,
+                                 onBlur
+                               }) => {
+  const { t } = useTranslation("plugins");
+  const { value: codeSetting } = useCodeSettingValue();
 
-  getLanguage = () => {
-    const { language } = this.props;
-    return findLanguage(language);
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | undefined>(undefined);
+  const [currentLanguage, setCurrentLanguage] = useState(defaultLanguage);
 
-  // disabled for now, code splitting seems not work for plugins
-  componentDidMount() {
-    this.loadLanguage();
-  }
+  useEffect(() => {
+    const language = findLanguage(languageProp);
+    setLoading(true);
 
-  componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.language !== this.props.language) {
-      this.loadLanguage();
-    }
-  }
-
-  loadLanguage = () => {
-    const language = this.getLanguage();
-    this.setState({
-      loading: true,
-      error: undefined
-    });
     import(`ace-builds/src-noconflict/mode-${language}`)
       .then(() => {
-        this.setState({
-          loading: false,
-          error: undefined,
-          language
-        });
+        setCurrentLanguage(language);
+        setError(undefined);
+        setLoading(false);
       })
-      .catch(error => {
-        this.setState({
-          loading: false,
-          error,
-          language: defaultLanguage
-        });
+      .catch((err) => {
+        setCurrentLanguage(defaultLanguage);
+        setError(err);
+        setLoading(false);
       });
-  };
+  }, [languageProp]);
 
-  reloadEditor = (editor: Ace.Editor) => {
+  const reloadEditor = useCallback((editor: Ace.Editor) => {
+    const session = editor.getSession();
+    session.setOptions({
+      mode: "ace/mode/javascript",
+      tabSize: codeSetting.tabSize,
+      useSoftTabs: false
+    });
+
+    document.documentElement.style.setProperty(
+      "--user-tab-size",
+      String(codeSetting.tabSize)
+    );
+
+    editor.renderer.updateCharacterSize();
     editor.resize(true);
     editor.renderer.updateFull(true);
-  };
+  }, [codeSetting.tabSize, content]);
 
-  render() {
-    const { content, disabled, className, onChange, initialFocus = false, t } = this.props;
-    const { language, loading, error } = this.state;
-
-    if (loading) {
-      return <Loading />;
-    } else if (error) {
-      return <ErrorNotification error={error} />;
-    }
-
-    return (
-      <StyledAceEditor
-        className={`is-family-monospace ${className}`}
-        mode={language}
-        theme="scm-manager"
-        onChange={onChange}
-        name="UNIQUE_ID_OF_DIV"
-        value={content}
-        readOnly={disabled}
-        width="100%"
-        fontSize="14px"
-        onFocus={(event, editor: Ace.Editor) => this.reloadEditor(editor)}
-        onScroll={(editor: Ace.Editor) => this.reloadEditor(editor)}
-        setOptions={{ useWorker: false, cursorStyle: "smooth", autoScrollEditorIntoView: true }}
-        placeholder={t("scm-editor-plugin.edit.placeholder")}
-        focus={initialFocus}
-        navigateToFileEnd={false}
-        commands={[
-          {
-            name: "ToCommitMessage",
-            bindKey: { mac: "Command-Enter", win: "Ctrl-Enter" },
-            exec: editor => {
-              editor.blur();
-              this.props.onBlur?.strgEnter();
-            }
-          },
-          {
-            name: "ToCancelButton",
-            bindKey: { mac: "Esc", win: "Esc" },
-            exec: editor => {
-              editor.blur();
-              this.props.onBlur?.esc();
-            }
-          }
-        ]}
-      />
-    );
+  if (loading) {
+    return <Loading />;
+  } else if (error) {
+    return <ErrorNotification error={error} />;
   }
-}
 
-export default withTranslation("plugins")(CodeEditor);
+  return (
+    <StyledAceEditor
+      className={`is-family-monospace ${className}`}
+      mode={currentLanguage}
+      onLoad={(editor) => {
+        registerTheme(ace);
+        editor.setTheme("ace/theme/scm-manager");
+        reloadEditor(editor);
+      }}
+      theme="scm-manager"
+      onChange={onChange}
+      name="UNIQUE_ID_OF_DIV"
+      value={content}
+      readOnly={disabled}
+      width="100%"
+      fontSize="14px"
+      onFocus={(event, editor) => {
+        reloadEditor(editor as any);
+      }}
+      setOptions={{ useWorker: false, cursorStyle: "smooth", autoScrollEditorIntoView: true }}
+      placeholder={t("scm-editor-plugin.edit.placeholder")}
+      focus={initialFocus}
+      navigateToFileEnd={false}
+      commands={[
+        {
+          name: "ToCommitMessage",
+          bindKey: { mac: "Command-Enter", win: "Ctrl-Enter" },
+          exec: (editor) => {
+            editor.blur();
+            onBlur?.strgEnter();
+          }
+        },
+        {
+          name: "ToCancelButton",
+          bindKey: { mac: "Esc", win: "Esc" },
+          exec: (editor) => {
+            editor.blur();
+            onBlur?.esc();
+          }
+        }
+      ]}
+    />
+  );
+};
+
+export default CodeEditor;

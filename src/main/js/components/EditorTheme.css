@@ -14,64 +14,63 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-.scm-manager {
-  font-family: monospace !important;
+.ace-scm-manager {
   font-size: 14px !important;
   line-height: 21px !important;
   font-weight: 400;
 }
 
-.scm-manager .ace_placeholder {
+.ace-scm-manager .ace_placeholder {
   font-family: inherit;
   transform: scale(1);
 }
 
-.scm-manager .ace_marker-layer .ace_selection {
+.ace-scm-manager .ace_marker-layer .ace_selection {
   background: var(--sh-selected-color);
 }
 
-.scm-manager .ace_meta,
-.scm-manager .ace_meta.ace_tag,
-.scm-manager .ace_comment {
+.ace-scm-manager .ace_meta,
+.ace-scm-manager .ace_meta.ace_tag,
+.ace-scm-manager .ace_comment {
   color: var(--sh-comment-color);
 }
 
-.scm-manager .ace_constant.ace_character,
-.scm-manager .ace_entity.ace_other.ace_attribute-name,
-.scm-manager .ace_string {
+.ace-scm-manager .ace_constant.ace_character,
+.ace-scm-manager .ace_entity.ace_other.ace_attribute-name,
+.ace-scm-manager .ace_string {
   color: var(--sh-selector-color);
 }
 
-.scm-manager .ace_keyword.ace_operator {
+.ace-scm-manager .ace_keyword.ace_operator {
   color: var(--sh-operator-color);
 }
 
-.scm-manager .ace_variable,
-.scm-manager .ace_keyword {
+.ace-scm-manager .ace_variable,
+.ace-scm-manager .ace_keyword {
   color: var(--sh-keyword-color);
 }
 
-.scm-manager .ace_entity.ace_name.ace_function,
-.scm-manager .ace_support.ace_function {
+.ace-scm-manager .ace_entity.ace_name.ace_function,
+.ace-scm-manager .ace_support.ace_function {
   color: var(--sh-function-color);
 }
 
-.scm-manager .ace_variable,
-.scm-manager .ace_string.ace_regexp {
+.ace-scm-manager .ace_variable,
+.ace-scm-manager .ace_string.ace_regexp {
   color: var(--sh-variable-color);
 }
 
-.scm-manager .ace_constant.ace_other,
-.scm-manager .ace_invalid.ace_deprecated, /* ? */
-.scm-manager .ace_entity.ace_name.ace_tag,
-.scm-manager .ace_constant.ace_numeric {
+.ace-scm-manager .ace_constant.ace_other,
+.ace-scm-manager .ace_invalid.ace_deprecated,
+.ace-scm-manager .ace_entity.ace_name.ace_tag,
+.ace-scm-manager .ace_constant.ace_numeric {
   color: var(--sh-property-color);
 }
 
-.scm-manager .ace_constant.ace_language {
+.ace-scm-manager .ace_constant.ace_language {
   color: var(--sh-function-color);
 }
 
-.scm-manager .ace_indent-guide {
+.ace-scm-manager .ace_indent-guide {
   border-right: 1px solid var(--scm-border-color);
 }

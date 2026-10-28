@@ -18,22 +18,17 @@
 // copy of ace/theme/arduino-tomorrow
 import css from '!!raw-loader!./EditorTheme.css';
 
-ace.define("ace/theme/scm-manager", ["require", "exports", "module", "ace/lib/dom"], function(
-  require,
-  exports,
-  module
-) {
-  exports.isDark = false;
-  exports.cssClass = "scm-manager";
-  exports.cssText = css;
-
-  var dom = require("../lib/dom");
-  dom.importCssString(exports.cssText, exports.cssClass);
-});
-(function() {
-  ace.require(["ace/theme/scm-manager"], function(m) {
-    if (typeof module == "object" && typeof exports == "object" && module) {
-      module.exports = m;
+export function registerTheme(ace) {
+  ace.define(
+    "ace/theme/scm-manager",
+    ["require", "exports", "module", "ace/lib/dom"],
+    function (require, exports, module) {
+      exports.isDark = false;
+      exports.cssClass = "ace-scm-manager";
+      exports.cssText = css;
+      var dom = require("ace/lib/dom");
+      dom.importCssString(exports.cssText, exports.cssClass);
     }
-  });
-})();
+  );
+  ace.require("ace/theme/scm-manager");
+}
